@@ -1,0 +1,57 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "slo-ledger"
+version = "0.1.0"
+description = "Auditable reliability and usage statements from raw telemetry: counters, SLOs, burn-rate alerts, 95th percentile billing and credits."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Jerson Montes" }]
+requires-python = ">=3.11"
+dependencies = [
+    "tzdata; sys_platform == 'win32'",
+]
+keywords = ["slo", "sre", "error budget", "burn rate", "billing", "telemetry"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Monitoring",
+    "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+dev = [
+    "hypothesis>=6.100",
+    "mypy==2.4.0",
+    "numpy>=1.26",
+    "pytest>=8.0",
+    "ruff==0.17.3",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/slo_ledger"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "SIM", "C4", "PT", "RUF", "N"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+files = ["src", "tests"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
