@@ -1,0 +1,74 @@
+# The worked example: March 2026 on New York's clocks (daylight saving starts on
+# the 8th, so the month is 44,580 minutes). Generate the data first:
+#
+#     python examples/generate_example.py examples/march
+#     slo-ledger statement examples/march/config.toml
+
+[statement]
+month = "2026-03"
+timezone = "America/New_York"
+currency = "USD"
+
+# Good and total request counters of one service, read every 5 minutes.
+[[requests]]
+name = "checkout-api"
+readings = "data/checkout_requests.csv"
+objective = "0.999"
+bucket = "5m"
+max_rate = 500            # requests per second the service can serve at most
+max_gap = "10m"
+alerts = true             # replay the workbook's burn-rate rules over the month
+fee = "1200.00"
+credits = [
+    { below = "0.999", credit = "0.10" },
+    { below = "0.99", credit = "0.25" },
+    { below = "0.95", credit = "1" },
+]
+
+# The age of a search index, read about every 2 minutes. Over 300 s is bad.
+[[gauge]]
+name = "search-freshness"
+readings = "data/search_freshness.csv"
+bad_above = 300
+staleness = "5m"
+objective = "0.995"
+unknown = "exclude"
+exclusions = "data/maintenance.csv"
+fee = "400.00"
+credits = [{ below = "0.995", credit = "0.10" }, { below = "0.98", credit = "0.30" }]
+
+# Request records kept with a recorded probability. Good within 400 ms.
+[[sampled]]
+name = "search-latency"
+records = "data/search_latency_samples.csv"
+good_within_ms = 400
+objective = "0.99"
+level = 0.95
+
+# A 1 Gb/s port with a 64-bit octet counter, billed at the 95th percentile.
+[[link]]
+name = "uplink-a"
+readings = "data/uplink_a.csv"
+bits = 64
+line_rate_mbps = 1000
+bucket = "5m"
+max_gap = "10m"
+missing = "exclude"
+commit_mbps = 200
+commit_price = "2.50"
+burst_price = "3.75"
+
+# A 100 Mb/s port with a 32-bit counter; its restarts come from device uptime.
+[[link]]
+name = "uplink-b"
+readings = "data/uplink_b.csv"
+bits = 32
+line_rate_mbps = 100
+restarts = "data/uplink_b_restarts.csv"
+restarts_complete = true
+bucket = "5m"
+max_gap = "10m"
+missing = "exclude"
+commit_mbps = 50
+commit_price = "3.00"
+burst_price = "4.50"

@@ -1,0 +1,149 @@
+{
+  "month": "2026-03",
+  "timezone": "America/New_York",
+  "currency": "USD",
+  "window": {
+    "start": "2026-03-01T05:00:00Z",
+    "end": "2026-04-01T04:00:00Z",
+    "minutes": 44580.0
+  },
+  "requests": [
+    {
+      "name": "checkout-api",
+      "objective": "0.999",
+      "good": 120260768,
+      "total": 120448052,
+      "attainment": "0.998445105",
+      "budget_remaining": "-0.5548",
+      "met": false,
+      "excluded_buckets": 0,
+      "credit": {
+        "share": "0.10",
+        "amount": "120.00"
+      },
+      "alerts": [
+        {
+          "rule": "page-1h",
+          "evaluations": 8905,
+          "firing": [
+            {
+              "start": "2026-03-12T18:05:00Z",
+              "end": "2026-03-12T19:35:00Z"
+            }
+          ],
+          "firing_minutes": 90.0
+        },
+        {
+          "rule": "page-6h",
+          "evaluations": 8845,
+          "firing": [
+            {
+              "start": "2026-03-12T18:05:00Z",
+              "end": "2026-03-12T20:00:00Z"
+            },
+            {
+              "start": "2026-03-24T16:30:00Z",
+              "end": "2026-03-24T21:15:00Z"
+            }
+          ],
+          "firing_minutes": 400.0
+        },
+        {
+          "rule": "ticket-3d",
+          "evaluations": 8053,
+          "firing": [
+            {
+              "start": "2026-03-12T18:10:00Z",
+              "end": "2026-03-13T01:30:00Z"
+            },
+            {
+              "start": "2026-03-24T18:05:00Z",
+              "end": "2026-03-25T02:40:00Z"
+            }
+          ],
+          "firing_minutes": 955.0
+        }
+      ]
+    }
+  ],
+  "gauges": [
+    {
+      "name": "search-freshness",
+      "objective": "0.995",
+      "unknown_counts_as": "exclude",
+      "good_minutes": 44358.316666666666,
+      "bad_minutes": 69.71666666666667,
+      "unknown_minutes": 31.966666666666665,
+      "excluded_minutes": 120.0,
+      "attainment": "0.998430795",
+      "budget_remaining": "0.6861",
+      "met": true,
+      "longest_breach": {
+        "start": "2026-03-05T15:22:09Z",
+        "end": "2026-03-05T16:12:07Z",
+        "minutes": 49.96666666666667
+      },
+      "credit": {
+        "share": "0",
+        "amount": "0.00"
+      }
+    }
+  ],
+  "sampled": [
+    {
+      "name": "search-latency",
+      "objective": "0.99",
+      "records": 55311,
+      "estimated_requests": 9634650.0,
+      "estimate": 0.991053,
+      "interval": [
+        0.990151,
+        0.991955
+      ],
+      "level": 0.95,
+      "verdict": "met"
+    }
+  ],
+  "links": [
+    {
+      "name": "uplink-a",
+      "samples": 8906,
+      "missing": 10,
+      "discarded": 445,
+      "p95_mbps": "181.596",
+      "commit_mbps": "200.000",
+      "burst_mbps": "0.000",
+      "charge": "500.00"
+    },
+    {
+      "name": "uplink-b",
+      "samples": 8916,
+      "missing": 0,
+      "discarded": 445,
+      "p95_mbps": "64.713",
+      "commit_mbps": "50.000",
+      "burst_mbps": "14.713",
+      "charge": "216.21"
+    }
+  ],
+  "not_counted": [
+    {
+      "series": "uplink-a",
+      "start": "2026-03-17T12:05:01Z",
+      "end": "2026-03-17T12:10:00Z",
+      "kind": "implausible",
+      "before": 22979012994120,
+      "after": 24082240166678,
+      "candidates": []
+    },
+    {
+      "series": "uplink-a",
+      "start": "2026-03-17T12:10:00Z",
+      "end": "2026-03-17T12:15:07Z",
+      "kind": "implausible",
+      "before": 24082240166678,
+      "after": 22986552554960,
+      "candidates": []
+    }
+  ]
+}
