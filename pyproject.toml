@@ -37,6 +37,9 @@ dev = [
     "ruff==0.17.3",
 ]
 
+[project.scripts]
+slo-ledger = "slo_ledger.cli:main"
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/slo_ledger"]
 

@@ -19,6 +19,7 @@ from slo_ledger.counters import (
     bucketize,
     counter_steps,
 )
+from slo_ledger.credits import CreditTable, CreditTier, credit_amount, truncated_percent
 from slo_ledger.intervals import Interval, IntervalSet, local_day_start, month_window
 from slo_ledger.percentile import BurstableResult, burstable, nearest_rank
 from slo_ledger.slo import (
@@ -44,6 +45,8 @@ __all__ = [
     "BurnRule",
     "BurstableResult",
     "CounterPolicy",
+    "CreditTable",
+    "CreditTier",
     "ErrorBudget",
     "GaugeReading",
     "Interval",
@@ -62,6 +65,7 @@ __all__ = [
     "bucketize",
     "burstable",
     "counter_steps",
+    "credit_amount",
     "detection_time",
     "error_budget",
     "gauge_sli",
@@ -73,5 +77,6 @@ __all__ = [
     "request_sli",
     "reset_time",
     "time_error_budget",
+    "truncated_percent",
     "workbook_detection_time",
 ]
