@@ -1,5 +1,14 @@
 """Auditable reliability and usage statements from raw telemetry."""
 
+from slo_ledger.burnrate import (
+    WORKBOOK_RULES,
+    BurnRule,
+    RuleReplay,
+    detection_time,
+    replay,
+    reset_time,
+    workbook_detection_time,
+)
 from slo_ledger.counters import (
     Bucket,
     CounterPolicy,
@@ -30,7 +39,9 @@ from slo_ledger.slo import (
 __version__ = "0.1.0"
 
 __all__ = [
+    "WORKBOOK_RULES",
     "Bucket",
+    "BurnRule",
     "BurstableResult",
     "CounterPolicy",
     "ErrorBudget",
@@ -39,6 +50,7 @@ __all__ = [
     "IntervalSet",
     "Reading",
     "RequestSLI",
+    "RuleReplay",
     "SampledEstimate",
     "SampledRecord",
     "Step",
@@ -50,12 +62,16 @@ __all__ = [
     "bucketize",
     "burstable",
     "counter_steps",
+    "detection_time",
     "error_budget",
     "gauge_sli",
     "horvitz_thompson",
     "local_day_start",
     "month_window",
     "nearest_rank",
+    "replay",
     "request_sli",
+    "reset_time",
     "time_error_budget",
+    "workbook_detection_time",
 ]
